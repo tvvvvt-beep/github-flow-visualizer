@@ -1,0 +1,63 @@
+/* Team Mode Badge (Static) */
+.team-badge {
+    background: #f59e0b;
+    /* Amber/Orange for busy activity */
+    color: #1e293b;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+    animation: pulse 3s infinite;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Adjust header layout to accommodate button */
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.team-mode-toggle {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 600px) {
+    .team-badge {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin-top: 10px;
+    }
+
+    .app-header {
+        flex-direction: column;
+        padding-bottom: 16px;
+    }
+}

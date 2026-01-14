@@ -1,0 +1,89 @@
+.git-graph-container {
+    width: 100%;
+    height: 100%;
+    background: #1e293b;
+    /* Dark slate background */
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.2);
+    display: flex;
+    flex-direction: row;
+    /* Allow horizontal expansion */
+    overflow-x: auto;
+    /* Enable horizontal scroll */
+    scroll-behavior: smooth;
+}
+
+.world-label {
+    position: absolute;
+    left: 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.main-label {
+    top: 10px;
+    color: var(--color-branch-main);
+}
+
+.feature-label {
+    top: 120px;
+    color: var(--color-branch-feature);
+}
+
+.graph-svg {
+    min-width: 100%;
+}
+
+.commit-line {
+    stroke: var(--color-line);
+    stroke-linecap: round;
+    transition: all 0.5s ease;
+}
+
+.merge-line {
+    stroke: var(--color-branch-feature);
+    opacity: 0.6;
+}
+
+.commit-node {
+    stroke-width: 3px;
+    fill: var(--color-commit-node);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.commit-node.is-main {
+    stroke: var(--color-branch-main);
+}
+
+.commit-node.is-feature {
+    stroke: var(--color-branch-feature);
+}
+
+.node-msg {
+    font-size: 10px;
+    fill: var(--color-text-secondary);
+    pointer-events: none;
+}
+
+.branch-tag {
+    fill: var(--color-text-primary);
+    opacity: 0.8;
+}
+
+.tag-main {
+    fill: var(--color-branch-main);
+}
+
+.tag-feature {
+    fill: var(--color-branch-feature);
+}
+
+.branch-tag-text {
+    font-size: 10px;
+    fill: white;
+    font-weight: bold;
+}
