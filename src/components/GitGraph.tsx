@@ -7,7 +7,7 @@ interface GitGraphProps {
 }
 
 export const GitGraph: React.FC<GitGraphProps> = ({ state }) => {
-    const { commits, branches } = state;
+    const { commits, branches, forkedFrom } = state;
     const containerRef = useRef<HTMLDivElement>(null);
 
     // Layout constants
@@ -48,6 +48,24 @@ export const GitGraph: React.FC<GitGraphProps> = ({ state }) => {
 
     return (
         <div className="git-graph-container" ref={containerRef}>
+            {forkedFrom && (
+                <div className="fork-badge" style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: 'rgba(139, 92, 246, 0.2)',
+                    border: '2px solid rgba(139, 92, 246, 0.5)',
+                    borderRadius: '20px',
+                    padding: '8px 16px',
+                    fontSize: '14px',
+                    fontWeight: 'bold',
+                    color: '#a78bfa',
+                    zIndex: 10,
+                }}>
+                    🍴 Forked from: original-repo
+                </div>
+            )}
             <div className="world-label main-label">みんなの世界 (Main)</div>
             <div className="world-label feature-label">自分だけの世界 (Feature)</div>
 

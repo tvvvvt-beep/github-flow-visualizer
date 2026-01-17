@@ -15,7 +15,7 @@ function App() {
   const [notification, setNotification] = useState<{ type: 'slack' | 'github', message: string } | null>(null);
 
   // Lift toggleTeamMode and isTeamMode to be controlled by WelcomeScreen
-  const { gitState, createBranch, createCommit, mergeBranch, reset, isTeamMode, toggleTeamMode } = useGitSim();
+  const { gitState, createBranch, createCommit, mergeBranch, handleFork, reset, isTeamMode, toggleTeamMode } = useGitSim();
 
   const handleStart = useCallback((enableTeamMode: boolean) => {
     setHasStarted(true);
@@ -75,6 +75,11 @@ function App() {
     handleNext();
   }, [mergeBranch, handleNext]);
 
+  const handleForkAction = useCallback(() => {
+    handleFork();
+    handleNext();
+  }, [handleFork, handleNext]);
+
   if (!hasStarted) {
     return <WelcomeScreen onSelectMode={handleStart} />;
   }
@@ -113,6 +118,7 @@ function App() {
               onReset={handleReset}
               onSlack={handleSlack}
               onFix={handleFix}
+              onFork={handleForkAction}
             />
           </section>
         </div>

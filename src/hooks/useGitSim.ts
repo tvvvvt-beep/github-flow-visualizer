@@ -17,6 +17,7 @@ const INITIAL_STATE: GitState = {
     },
     activeBranch: 'main',
     head: 'c1',
+    forkedFrom: false,
 };
 
 export const useGitSim = () => {
@@ -154,6 +155,13 @@ export const useGitSim = () => {
         });
     }, []);
 
+    const handleFork = useCallback(() => {
+        setGitState((prev) => ({
+            ...prev,
+            forkedFrom: true,
+        }));
+    }, []);
+
     const reset = useCallback(() => {
         setGitState(INITIAL_STATE);
         setIsTeamMode(false);
@@ -167,6 +175,7 @@ export const useGitSim = () => {
         createBranch,
         checkout,
         mergeBranch,
+        handleFork,
         reset
     };
 };

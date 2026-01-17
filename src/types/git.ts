@@ -15,9 +15,10 @@ export interface GitState {
     branches: Record<BranchName, string>; // branch name -> commit id
     activeBranch: BranchName;
     head: string | null; // current checked out commit id
+    forkedFrom: boolean; // リポジトリがForkされたものかどうか
 }
 
 export interface GitAction {
-    type: 'INIT' | 'COMMIT' | 'BRANCH' | 'CHECKOUT' | 'MERGE';
+    type: 'INIT' | 'COMMIT' | 'BRANCH' | 'CHECKOUT' | 'MERGE' | 'FORK';
     payload?: any;
 }

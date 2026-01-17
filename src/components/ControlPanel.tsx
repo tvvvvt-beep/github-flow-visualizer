@@ -11,10 +11,12 @@ interface ControlPanelProps {
     onReset: () => void;
     onSlack?: () => void;
     onFix?: () => void;
+    onFork?: () => void;
 }
 
 const getCommandText = (action: ActionType, branchName = 'feature-new'): string => {
     switch (action) {
+        case 'FORK': return 'GitHubで「Fork」ボタンをクリック';
         case 'BRANCH': return `git checkout -b ${branchName}`;
         case 'COMMIT': return 'git commit -m "update work"';
         case 'MERGE': return `git merge ${branchName}`;
@@ -32,7 +34,8 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
     onNext,
     onReset,
     onSlack,
-    onFix
+    onFix,
+    onFork
 }) => {
     const currentCommand = getCommandText(step.actionRequired);
 
@@ -60,6 +63,12 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
             </div>
 
             <div className="actions-container">
+                {step.actionRequired === 'FORK' && (
+                    <button className="btn btn-primary" onClick={onFork}>
+                        <span className="icon">🍴</span> Forkする
+                    </button>
+                )}
+
                 {step.actionRequired === 'BRANCH' && (
                     <button className="btn btn-primary" onClick={onBranch}>
                         <span className="icon">🌿</span> 新しいブランチを作る
