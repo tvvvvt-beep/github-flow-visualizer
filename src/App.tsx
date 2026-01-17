@@ -8,9 +8,11 @@ import { ControlPanel } from './components/ControlPanel';
 import { StoryGuide } from './components/StoryGuide';
 import { NotificationOverlay } from './components/NotificationOverlay';
 import { WelcomeScreen } from './components/WelcomeScreen';
+import { CommandDictionary } from './components/CommandDictionary';
 
 function App() {
   const [hasStarted, setHasStarted] = useState(false);
+  const [showDictionary, setShowDictionary] = useState(false);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [notification, setNotification] = useState<{ type: 'slack' | 'github', message: string } | null>(null);
 
@@ -39,6 +41,7 @@ function App() {
     setCurrentStepIndex(0);
     setNotification(null);
     setHasStarted(false); // Return to welcome screen
+    setShowDictionary(false); // Close dictionary if open
   }, [reset]);
 
   const handleBranch = useCallback(() => {
@@ -80,8 +83,20 @@ function App() {
     handleNext();
   }, [handleFork, handleNext]);
 
+  const handleShowDictionary = useCallback(() => {
+    setShowDictionary(true);
+  }, []);
+
+  const handleCloseDictionary = useCallback(() => {
+    setShowDictionary(false);
+  }, []);
+
+  if (showDictionary) {
+    return <CommandDictionary onBack={handleCloseDictionary} />;
+  }
+
   if (!hasStarted) {
-    return <WelcomeScreen onSelectMode={handleStart} />;
+    return <WelcomeScreen onSelectMode={handleStart} onShowDictionary={handleShowDictionary} />;
   }
 
   return (

@@ -89,3 +89,40 @@
 .mode-card:hover .start-btn {
     transform: scale(1.05);
 }
+
+.dictionary-section {
+    margin-top: 3rem;
+    width: 100%;
+    max-width: 640px;
+}
+
+.dictionary-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dictionary-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dict-icon {
+    font-size: 1.5rem;
+}
+
+.dict-text {
+    font-size: 1.1rem;
+}

@@ -3,9 +3,10 @@ import './WelcomeScreen.css';
 
 interface WelcomeScreenProps {
     onSelectMode: (isTeamMode: boolean) => void;
+    onShowDictionary: () => void;
 }
 
-export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onSelectMode }) => {
+export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onSelectMode, onShowDictionary }) => {
     return (
         <div className="welcome-container">
             <h1 className="welcome-title">GitHub Flow Visualizer</h1>
@@ -25,6 +26,13 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onSelectMode }) =>
                     <p>開発現場の熱気を体験。<br />他のメンバーも同時に活動します。</p>
                     <button className="start-btn">はじめる</button>
                 </div>
+            </div>
+
+            <div className="dictionary-section">
+                <button className="dictionary-btn" onClick={onShowDictionary}>
+                    <span className="dict-icon">📚</span>
+                    <span className="dict-text">GitHub頻出コマンド辞書</span>
+                </button>
             </div>
         </div>
     );
